@@ -144,6 +144,10 @@ float3 GetTangent(float3 tan1, float3 tan2, float3 tan3, int index) {
 v2g vert (appdata v)
 {
     v2g o = (v2g)0;
+
+	UNITY_SETUP_INSTANCE_ID(v);
+	UNITY_TRANSFER_INSTANCE_ID(v, o);
+	
     o.vertex = v.vertex;
     o.uv = v.uv;
     
@@ -161,7 +165,7 @@ v2g vert (appdata v)
 [maxvertexcount(12)]
 void geom(triangle v2g v[3], uint triangleID: SV_PrimitiveID, inout TriangleStream<g2f> tristream)
 {
-
+	UNITY_SETUP_INSTANCE_ID(v[0]);
 	//float framerate = 1000/unity_DeltaTime.w;
 	//bool skip = framerate<_MinimumFramerate || _DissolveCoverage < 0.001;
 	bool skip = _DissolveCoverage < 0.001;
@@ -243,6 +247,8 @@ void geom(triangle v2g v[3], uint triangleID: SV_PrimitiveID, inout TriangleStre
 			TRANSFER_SHADOW_CASTER_NOPOS_GEOMETRY(o, o.pos, vertex, normal);
 			#endif
 
+			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+			
 			tristream.Append(o);
 			if (i%3==2) tristream.RestartStrip();
 		}
@@ -278,6 +284,8 @@ void geom(triangle v2g v[3], uint triangleID: SV_PrimitiveID, inout TriangleStre
 			#else
 			TRANSFER_SHADOW_CASTER_NOPOS_GEOMETRY(o, o.pos, vertex, normal);
 			#endif
+
+			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 			tristream.Append(o);
 			if (i%3==2) tristream.RestartStrip();

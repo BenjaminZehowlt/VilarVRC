@@ -98,6 +98,7 @@ Shader "Vilar/GeometryDissolve"
                 float2 uv2 : TEXCOORD2;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2g
@@ -108,6 +109,7 @@ Shader "Vilar/GeometryDissolve"
                 float2 uv2 : TEXCOORD2;
                 float3 normal : TEXCOORD3;
                 float4 tangent : TEXCOORD4;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
             struct g2f
@@ -122,6 +124,7 @@ Shader "Vilar/GeometryDissolve"
                 float3 objNormal : TEXCOORD8;
 								float3 bary : texcoord10;
                 SHADOW_COORDS(9)
+            	UNITY_VERTEX_OUTPUT_STEREO
             };
 
             #include "Defines.cginc"
@@ -159,6 +162,7 @@ Shader "Vilar/GeometryDissolve"
 				float2 uv : TEXCOORD0;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2g
@@ -167,6 +171,7 @@ Shader "Vilar/GeometryDissolve"
 				float2 uv : TEXCOORD0;
                 float3 normal : TEXCOORD1;
                 float4 tangent : TEXCOORD2;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
             struct g2f
@@ -178,6 +183,7 @@ Shader "Vilar/GeometryDissolve"
                 float3 objPos : TEXCOORD5;
                 float3 objNormal : TEXCOORD6;
                 SHADOW_COORDS(7)
+            	UNITY_VERTEX_OUTPUT_STEREO
             };
 
 			
@@ -213,6 +219,7 @@ Shader "Vilar/GeometryDissolve"
 				float2 uv : TEXCOORD0;
                 float3 normal : NORMAL;
                 float4 tangent : TANGENT;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2g
@@ -221,12 +228,14 @@ Shader "Vilar/GeometryDissolve"
 				float2 uv : TEXCOORD0;
                 float3 normal : TEXCOORD1;
                 float4 tangent : TEXCOORD2;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
             struct g2f
             {
                 float4 pos : SV_POSITION;
 				float2 uv : TEXCOORD0;
+            	UNITY_VERTEX_OUTPUT_STEREO
             };
 
             #include "Defines.cginc"
